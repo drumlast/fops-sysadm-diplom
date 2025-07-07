@@ -1,0 +1,18 @@
+- name: Create data directory for Elasticsearch
+  file:
+    path: /opt/elasticsearch/data
+    state: directory
+    recurse: yes
+
+- name: Run Elasticsearch container
+  community.docker.docker_container:
+    name: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.14
+    ports:
+      - "9200:9200"
+    env:
+      discovery.type: single-node
+      ES_JAVA_OPTS: "-Xms512m -Xmx512m"
+    volumes:
+      - /opt/elasticsearch/data:/usr/share/elasticsearch/data
+    restart_policy: always

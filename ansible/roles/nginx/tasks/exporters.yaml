@@ -1,0 +1,17 @@
+- name: Install Node Exporter
+  community.docker.docker_container:
+    name: node_exporter
+    image: prom/node-exporter
+    ports:
+      - "9100:9100"
+    restart_policy: always
+
+- name: Install Nginx Log Exporter
+  community.docker.docker_container:
+    name: nginxlogexporter
+    image: kikill95/nginx-log-exporter
+    ports:
+      - "9113:9113"
+    restart_policy: always
+    volumes:
+      - /var/log/nginx:/var/log/nginx:ro

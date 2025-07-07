@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Информация о сервере</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f4f4f4;
+            padding: 2em;
+        }
+        .box {
+            background: white;
+            padding: 2em;
+            border-radius: 8px;
+            box-shadow: 0 0 10px #ccc;
+            max-width: 600px;
+            margin: auto;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <h1>Информация о сервере</h1>
+    <p><strong>Имя хоста:</strong> {{ hostname }}</p>
+    <p><strong>IP-адрес:</strong> {{ ip_address }}</p>
+    <p><strong>Общий объём диска:</strong> {{ disk_size }}</p>
+    <p><strong>Объём оперативной памяти:</strong> {{ ram_size }}</p>
+</div>
+</body>
+</html>

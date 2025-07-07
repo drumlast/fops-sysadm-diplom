@@ -1,10 +1,13 @@
 variable "yc_token" {}
 variable "yc_cloud_id" {}
 variable "yc_folder_id" {}
-variable "image_id" {
-  default = "fd8f0g7n8v4f1p*********" # Ubuntu 24.04, актуальный образ получи через YC CLI:
+
+variable "yc_zone" {
+  default = "ru-central1-a"
 }
 
-variable "public_key" {
-  default = "~/.ssh/id_rsa.pub"
+variable "public_ssh_key" {}
+variable "image_id" {
+  description = "ID публичного образа Ubuntu 24.04"
+  default     = "fd876gids9srs8ma0592"
 }

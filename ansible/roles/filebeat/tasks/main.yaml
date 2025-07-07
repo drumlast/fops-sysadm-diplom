@@ -1,0 +1,22 @@
+- name: Create filebeat config directory
+  file:
+    path: /opt/filebeat
+    state: directory
+
+- name: Deploy filebeat.yml config
+  template:
+    src: filebeat.yml.j2
+    dest: /opt/filebeat/filebeat.yml
+
+- name: Run Filebeat container
+  community.docker.docker_container:
+    name: filebeat
+    image: docker.elastic.co/beats/filebeat:7.17.14
+    user: root
+    command: ["--strict.perms=false"]
+    volumes:
+      - /opt/filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+      - /var/log/nginx:/var/log/nginx:ro
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart_policy: always

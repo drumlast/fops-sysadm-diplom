@@ -1,0 +1,19 @@
+- name: Create Prometheus directories
+  file:
+    path: /opt/prometheus
+    state: directory
+
+- name: Copy Prometheus config
+  template:
+    src: prometheus.yml.j2
+    dest: /opt/prometheus/prometheus.yml
+
+- name: Run Prometheus container
+  community.docker.docker_container:
+    name: prometheus
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - /opt/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    restart_policy: always

@@ -1,0 +1,14 @@
+- hosts: webservers
+  roles:
+    - nginx
+
+- hosts: monitoring
+  roles:
+    - prometheus
+    - grafana
+
+- hosts: logging
+  roles:
+    - elasticsearch
+    - kibana
+    - filebeat

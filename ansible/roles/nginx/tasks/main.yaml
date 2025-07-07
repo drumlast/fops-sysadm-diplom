@@ -1,0 +1,13 @@
+- name: Install Nginx
+  apt:
+    name: nginx
+    state: present
+    update_cache: yes
+
+- name: Deploy static site files
+  copy:
+    src: files/
+    dest: /var/www/html/
+    owner: www-data
+    group: www-data
+    mode: 0644
